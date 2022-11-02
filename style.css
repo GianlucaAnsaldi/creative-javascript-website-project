@@ -16,6 +16,8 @@ body {
 }
 
 .nav-header {
+  position: fixed;
+  left: 10%;
   min-height: 10vh;
   font-size: 1rem;
   display: flex;
@@ -25,6 +27,7 @@ body {
   width: 80%;
   margin: auto;
   padding: 2rem 0;
+  z-index: 2;
 }
 
 .line1,
@@ -120,7 +123,13 @@ body {
   opacity: 1;
   clip-path: circle(50px at 100% -10%);
   -webkit-clip-path: circle(50px at 100% -10%);
+  /* transition: all 5s ease-in; */
 }
+
+/* .nav-bar.show {
+  clip-path: circle(2500px at 100% -10%);
+  -webkit-clip-path: circle(2500px at 100% -10%);
+} */
 
 .burger {
   cursor: pointer;
@@ -168,7 +177,7 @@ body {
   transform: translate(-50%, -50%);
   pointer-events: none;
   transition: all 0.5s ease-in-out;
-  transition-property: background, transform;
+  transition-property: transform;
   transform-origin: 75% 75%;
 }
 
@@ -219,4 +228,8 @@ body {
 
 .scrollmagic-pin-spacer {
   position: static !important;
+}
+
+body.hide {
+  overflow: hidden;
 }

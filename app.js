@@ -115,12 +115,14 @@ function navToggle(e) {
 }
 
 //Barba Page Transitions
+const logo = document.querySelector('#logo');
 barba.init({
   views: [
     {
       namespace: 'home',
       beforeEnter() {
         animateSlides();
+        logo.href = './index.html';
       },
       beforeLeave() {
         slideScene.destroy();
@@ -130,6 +132,37 @@ barba.init({
     },
     {
       namespace: 'fashion',
+      beforeEnter() {
+        logo.href = '../index.html';
+      },
+    },
+  ],
+  transitions: [
+    {
+      leave({ current, next }) {
+        let done = this.async();
+        //Animation
+        const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+        tl.fromTo(
+          current.container,
+          1,
+          { opacity: 1 },
+          { opacity: 0, onComplete: done }
+        );
+      },
+      enter({ current, next }) {
+        let done = this.async();
+        //Scroll to the top
+        window.scrollTo(0, 0);
+        //Animation
+        const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+        tl.fromTo(
+          next.container,
+          1,
+          { opacity: 0 },
+          { opacity: 1, onComplete: done }
+        );
+      },
     },
   ],
 });
